@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import ContactViewSet
+from .views import ContactViewSet, EmailRemainderViewSet, RegisterView, LoginView
 
 # Create a router and register the ContactViewSet with it.
 """
@@ -8,8 +8,14 @@ A router is a tool that automatically generates URL patterns for your ViewSet cl
 """
 router = DefaultRouter()
 router.register(r'contacts', ContactViewSet, basename='contact')
+router.register(r'remainders', EmailRemainderViewSet, basename='email-remainder')
 
 # The URL pattern for the API
 urlpatterns = [
+    # API endpoints handled by the router.
     path('', include('router.urls')),
+
+    # URLs for authentication (registration and login)
+    path('register/', RegisterView.as_view(), name='register'),
+    path('login/', LoginView.as_view(), name='login'),
 ]
