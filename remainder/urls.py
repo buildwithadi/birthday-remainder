@@ -13,7 +13,7 @@ router.register(r'remainders', EmailRemainderViewSet, basename='email-remainder'
 # The URL pattern for the API
 urlpatterns = [
     # API endpoints handled by the router.
-    path('', include('router.urls')),
+    path('', include(router.urls)),
 
     # URLs for authentication (registration and login)
     path('register/', RegisterView.as_view(), name='register'),
